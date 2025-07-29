@@ -1,0 +1,54 @@
+package main
+
+import "fmt"
+
+func main() {
+	conferenceName := "Go conference"
+	const conferenceTickets int = 50
+	var remainingTickets uint = 50
+
+	var firstName, lastName, email string
+	var userTickets uint
+
+	var bookings []string // bookings := []string{} also works
+	// bookings[0] = "Amanda" 	// add item in array at the 0-th index (first position)
+
+	// user input
+	fmt.Println("Enter your first name: ")
+	fmt.Scan(&firstName)
+
+	fmt.Println("Enter your last name: ")
+	fmt.Scan(&lastName)
+
+	fmt.Println("Enter your email address: ")
+	fmt.Scan(&email)
+
+	fmt.Println("Enter number of tickets: ")
+	fmt.Scan(&userTickets)
+
+	remainingTickets = remainingTickets - userTickets
+	// bookings[0] = firstName + " " + lastName
+	bookings = append(bookings, firstName+" "+lastName)
+
+	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v \n", firstName, lastName, userTickets, email)
+	fmt.Printf("Remaining tickets: %v for %v \n", remainingTickets, conferenceName)
+
+	fmt.Printf("Bookings array: %v \n", bookings)
+	fmt.Printf("First item in bookings array: %v\n", bookings[0])
+	fmt.Printf("Array type: %T\n", bookings)
+	fmt.Printf("Length of the bookings array: %v\n", len(bookings))
+
+	// print out the pointer of `remainingTickets`
+	// fmt.Printf("Remaining tickets: %v \n", remainingTickets)
+	// fmt.Printf("Pointer of remaining tickets variable: %v \n\n", &remainingTickets)
+
+	// fmt.Printf("User %v %v booked %v tickets. \n", firstName, lastName, userTickets)
+
+	// fmt.Printf("Welcome to %v booking app!\n", conferenceName)
+	// fmt.Println("We have a total of ", conferenceTickets, "tickets. Remaining tickets: ", remainingTickets)
+	// fmt.Println("Get your tickets here to attend.")
+	//
+	// types of variables
+	// fmt.Printf("conferenceName is %T, conferenceTickets is %T, remainingTickets is %T", conferenceName, conferenceTickets, remainingTickets)
+
+}
