@@ -11,6 +11,7 @@ func main() {
 	var remainingTickets uint = 50
 
 	var firstName, lastName, email string
+	// var city string
 	var userTickets uint
 
 	var bookings []string // bookings := []string{} also works
@@ -31,12 +32,20 @@ func main() {
 		fmt.Println("Enter number of tickets: ")
 		fmt.Scan(&userTickets)
 
+		// fmt.Println("What city will you attend %v?\n", conferenceName)
+		// fmt.Scan(&city)
+
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@")
+		isRequiredTickets := userTickets > 0 && userTickets <= remainingTickets
+		// isValidCity := city == "Nairobi" || "New York"
+
 		// verify if user tickets is more than what's available
 		if userTickets > remainingTickets {
 			fmt.Printf("We only have %v tickets remaining, you can't book %v tickets!\n", remainingTickets, userTickets)
 			continue
 
-		} else {
+		} else if isValidName && isValidEmail && isRequiredTickets {
 			remainingTickets = remainingTickets - userTickets
 			// bookings[0] = firstName + " " + lastName
 			bookings = append(bookings, firstName+" "+lastName)
@@ -60,6 +69,18 @@ func main() {
 				break
 			}
 
+		} else {
+			fmt.Printf("Invalid input! \n")
+
+			if !isValidName {
+				fmt.Println("First name is too short!")
+			}
+			if !isValidEmail {
+				fmt.Println("Invalid email address provided!")
+			}
+			if !isRequiredTickets {
+				fmt.Println("Invalid number of tickets provided!")
+			}
 		}
 
 	}
