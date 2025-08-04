@@ -17,6 +17,8 @@ func main() {
 	var bookings []string // bookings := []string{} also works
 	// bookings[0] = "Amanda" 	// add item in array at the 0-th index (first position)
 
+	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+
 	// user input
 	for {
 
@@ -35,9 +37,9 @@ func main() {
 		// fmt.Println("What city will you attend %v?\n", conferenceName)
 		// fmt.Scan(&city)
 
-		isValidName := len(firstName) >= 2 && len(lastName) >= 2
-		isValidEmail := strings.Contains(email, "@")
-		isRequiredTickets := userTickets > 0 && userTickets <= remainingTickets
+		isValidName, isValidEmail, isRequiredTickets := validateUserInput(
+			firstName, lastName, email, userTickets, remainingTickets,
+		)
 		// isValidCity := city == "Nairobi" || "New York"
 
 		// verify if user tickets is more than what's available
@@ -53,14 +55,7 @@ func main() {
 			fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v \n", firstName, lastName, userTickets, email)
 			fmt.Printf("Remaining tickets: %v for %v \n", remainingTickets, conferenceName)
 
-			firstNames := []string{}
-
-			// iterate through the firstNames array to get first names of each user
-			for _, name := range bookings {
-				var names = strings.Fields(name) // split the string with whitespace as separator & return a slice with the split elements
-				firstNames = append(firstNames, names[0])
-			}
-
+			firstNames := getFirstNames(bookings)
 			fmt.Printf("Names of bookings are: %v\n", firstNames)
 
 			if remainingTickets == 0 {
@@ -103,4 +98,34 @@ func main() {
 	// types of variables
 	// fmt.Printf("conferenceName is %T, conferenceTickets is %T, remainingTickets is %T", conferenceName, conferenceTickets, remainingTickets)
 
+}
+
+// functions
+func greetUsers(confName string, confTickets int, remainingConfTickets uint) {
+	fmt.Printf("Welcome to %v booking app!\n", confName)
+	fmt.Println("We have a total of ", confTickets, "tickets. Remaining tickets: ", remainingConfTickets)
+	fmt.Println("Get your tickets here to attend.")
+
+}
+
+// `[]string {}` is the output param - the type of data the function returns
+func getFirstNames(bookings []string) []string {
+	firstNames := []string{}
+
+	// iterate through the firstNames array to get first names of each user
+	for _, name := range bookings {
+		var names = strings.Fields(name) // split the string with whitespace as separator & return a slice with the split elements
+		firstNames = append(firstNames, names[0])
+	}
+
+	return firstNames
+
+}
+
+func validateUserInput(firstName string, lastName string, email string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
+	isValidName := len(firstName) >= 2 && len(lastName) >= 2
+	isValidEmail := strings.Contains(email, "@")
+	isRequiredTickets := userTickets > 0 && userTickets <= remainingTickets
+
+	return isValidName, isValidEmail, isRequiredTickets
 }
