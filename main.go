@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-func main() {
 var conferenceName = "Go conference"
 
 const conferenceTickets int = 50
@@ -13,9 +12,11 @@ const conferenceTickets int = 50
 var remainingTickets uint = 50
 var bookings []string
 
+func main() {
+	// bookings := []string{} also works
 	// bookings[0] = "Amanda" 	// add item in array at the 0-th index (first position)
 
-	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+	greetUsers()
 
 	// user input
 	for {
@@ -33,9 +34,9 @@ var bookings []string
 			continue
 
 		} else if isValidName && isValidEmail && isRequiredTickets {
-			bookTickets(remainingTickets, userTickets, firstName, lastName, email, bookings, conferenceName)
+			bookTickets(userTickets, firstName, lastName, email)
 
-			firstNames := getFirstNames(bookings)
+			firstNames := getFirstNames()
 			fmt.Printf("Names of bookings are: %v\n", firstNames)
 
 			if remainingTickets == 0 {
@@ -97,9 +98,9 @@ var bookings []string
 }
 
 // functions
-func greetUsers(confName string, confTickets int, remainingConfTickets uint) {
-	fmt.Printf("Welcome to %v booking app!\n", confName)
-	fmt.Println("We have a total of ", confTickets, "tickets. Remaining tickets: ", remainingConfTickets)
+func greetUsers() {
+	fmt.Printf("Welcome to %v booking app!\n", conferenceName)
+	fmt.Println("We have a total of ", conferenceTickets, "tickets. Remaining tickets: ", remainingTickets)
 	fmt.Println("Get your tickets here to attend.")
 
 }
@@ -129,7 +130,7 @@ func getUserInput() (string, string, string, uint) {
 }
 
 // `[]string {}` is the output param - the type of data the function returns
-func getFirstNames(bookings []string) []string {
+func getFirstNames() []string {
 	firstNames := []string{}
 
 	// iterate through the firstNames array to get first names of each user
@@ -150,7 +151,7 @@ func validateUserInput(firstName string, lastName string, email string, userTick
 	return isValidName, isValidEmail, isRequiredTickets
 }
 
-func bookTickets(remainingTickets uint, userTickets uint, firstName string, lastName string, email string, bookings []string, conferenceName string) {
+func bookTickets(userTickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - userTickets
 	// bookings[0] = firstName + " " + lastName
 	bookings = append(bookings, firstName+" "+lastName)
