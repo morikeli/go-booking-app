@@ -80,6 +80,22 @@ func main() {
 
 	}
 
+	city := "London"
+
+	switch city {
+	case "New York":
+	// execute code for booking New York conference tickets
+
+	case "Nairobi":
+	case "Tokyo", "Hong Kong":
+	case "Canberra":
+	case "Brasilia":
+	case "London":
+	case "Mumbai":
+	case "South Africa":
+
+	}
+
 	// fmt.Printf("Bookings array: %v \n", bookings)
 	// fmt.Printf("First item in bookings array: %v\n", bookings[0])
 	// fmt.Printf("Array type: %T\n", bookings)
