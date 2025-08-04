@@ -6,11 +6,13 @@ import (
 )
 
 func main() {
-	conferenceName := "Go conference"
-	const conferenceTickets int = 50
-	var remainingTickets uint = 50
+var conferenceName = "Go conference"
 
-	var bookings []string // bookings := []string{} also works
+const conferenceTickets int = 50
+
+var remainingTickets uint = 50
+var bookings []string
+
 	// bookings[0] = "Amanda" 	// add item in array at the 0-th index (first position)
 
 	greetUsers(conferenceName, conferenceTickets, remainingTickets)
