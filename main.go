@@ -68,7 +68,7 @@ func main() {
 			fmt.Printf("Invalid input! \n")
 
 			if !isValidName {
-				fmt.Println("First name is too short!")
+				fmt.Println("First name or last name is too short!")
 			}
 			if !isValidEmail {
 				fmt.Println("Invalid email address provided!")
